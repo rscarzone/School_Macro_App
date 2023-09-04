@@ -16,11 +16,15 @@ public class Main
         };
 
         //This for-each loop iterates through each website URL stored in the websites array.
-        for (String website : websites) {
-            try {
+        for (String website : websites)
+        {
+            try
+            {
                 Desktop.getDesktop().browse(new URI(website));
                 Thread.sleep(1000);
-            } catch (IOException | URISyntaxException | InterruptedException e) {
+            }
+            catch (IOException | URISyntaxException | InterruptedException e)
+            {
                 e.printStackTrace();
             }
         }
@@ -31,20 +35,45 @@ public class Main
         String os = System.getProperty("os.name").toLowerCase();
 
         // If the operating system name contains "win" (indicating it's some version of Windows)
-        if (os.contains("win")){
-            try {
+        if (os.contains("win"))
+        {
+            try
+            {
                 new ProcessBuilder("cmd", "/c", "start", "\"\"", "\"C:\\Program Files\\Git\\" +
                         "git-bash.exe\"").start();
                 new ProcessBuilder("cmd", "/c", "start", "\"\"", "\"C:\\Program Files\\JetBrains\\" +
                         "IntelliJ IDEA 2023.2\\bin\\idea64.exe\"").start();
-            } catch (IOException e){
+
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }
+        else if (os.contains("mac"))
+        {
+            try
+            {
+                new ProcessBuilder("open", "-a", "IntelliJ IDEA").start();
+                new ProcessBuilder("open", "-a", "Terminal").start();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else if (os.contains("nux"))
+        {
+            try
+            {
+                new ProcessBuilder("idea").start();
+                new ProcessBuilder("gnome-terminal").start();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
 
-
-
-
-
+        }
     }
 }
